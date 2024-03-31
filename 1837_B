@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int t;
+    
+    cin >> t;
+    
+    while(t-->0) {
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        int consOpen = 0;
+        int consClose = 0;
+        int maxi = 0;
+        
+        for(int i = 0; i < n; i++) {
+            if(s[i] == '<') {
+                maxi = max(maxi, consClose);
+                consOpen++;
+                consClose = 0;
+            }
+            else {
+                maxi = max(maxi, consOpen);
+                consClose++;
+                consOpen = 0;
+            }
+        }
+        maxi = max(maxi, max(consOpen, consClose));
+        cout << maxi + 1 << "\n";
+    }
+}
