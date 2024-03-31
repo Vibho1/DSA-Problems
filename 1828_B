@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    
+    cin >> t;
+    
+    while(t-->0) {
+        int n;
+        cin >> n;
+        int minD = 0;
+        for(int i = 0; i < n; i++) {
+            int num;
+            cin >> num;
+            if(num != i + 1) {
+            minD = __gcd(minD, abs(num - (i + 1)));
+            }
+        }
+        
+        cout << minD << "\n";
+    }
+}
