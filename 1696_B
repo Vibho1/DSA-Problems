@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t-- > 0) {
+        int n;
+        cin >> n;
+        bool flag = false;
+        bool encounter = false;
+        bool sure = false;
+        for (int i = 0; i < n; i++) {
+            int num;
+            cin >> num;
+            if(num != 0 && !flag) encounter = true;
+            if(num == 0 && encounter) flag = true;
+            if(flag && encounter) {
+                if(num != 0) sure = true; 
+            } 
+        }
+        
+        if(flag && encounter && sure) cout << 2 << endl;
+        else if((encounter && flag) || (encounter && !flag)) cout << 1 << endl;
+        else cout << 0 << endl;
+    }
+    return 0;
+}
