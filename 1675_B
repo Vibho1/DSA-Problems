@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int solve(vector<int>& vec, int n) {
+    int count = 0;
+        for(int i = n - 2; i >= 0; i--) {
+                while(vec[i] >= vec[i + 1] && vec[i] > 0) {
+                    vec[i] /= 2;
+                    count++;
+                }
+                if(vec[i] == vec[i + 1]) return -1;
+        }
+        
+        return count;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t-- > 0) {
+        int n;
+        cin >> n;
+        vector<int> vec;
+        
+        for(int i = 0; i < n; i++) {
+            int num;
+            cin >> num;
+            vec.emplace_back(num);
+        }
+        
+        int ans = solve(vec, n);
+        cout << ans << endl;
+    }
+    return 0;
+}
