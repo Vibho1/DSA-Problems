@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t-- > 0) {
+        long long a, b, c;
+        cin >> a >> b >> c;
+        
+        if(((abs(c + a) / 2) % b) == 0) cout << "YES";
+        else if(abs(c-a) == 1) cout <<"NO";
+        
+        
+        string ans = solve(s, t);
+        
+        cout << ans << endl;
+    }
+    return 0;
+}
