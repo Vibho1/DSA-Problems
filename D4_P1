@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int helper(vector<vector<int>>& vec, int r, int c, int cr, int cc, int sum) {
+    if(cr == r - 1 && cc == c - 1) return sum + vec[cr][cc];
+    if(cr < r - 1) {
+        if(cc < c - 1) {
+            return max(helper(vec, r, c, cr + 1, cc, sum + vec[cr][cc]), helper(vec, r, c, cr, cc + 1, sum + vec[cr][cc]));
+        }
+        else {
+            return helper(vec, r, c, cr + 1, cc, sum + vec[cr][cc]);
+        }
+    }
+    else {
+        return helper(vec, r, c, cr, cc + 1, sum + vec[cr][cc]);
+    }
+}
+
+int main() {
+
+        int r, c;
+        cin >> r >> c;
+        vector<vector<int>> vec(r, vector<int>(c));
+        
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                cin >> vec[i][j];
+            }
+        }
+        
+        cout << (helper(vec, r, c, 0, 0, 0)) << endl;
+        return 0;
+}
