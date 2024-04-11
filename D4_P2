@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool helper(vector<int>& vec, int sum, int target, int n, int idx) {
+    if(idx == n) return sum == target;
+    
+    return helper(vec, sum + vec[idx], target, n, idx + 1) || helper(vec, sum - vec[idx], target, n, idx + 1);
+}
+
+int main() {
+
+        int n, x;
+        cin >> n >> x;
+        vector<int> vec(n);
+        
+        for(int i = 0; i < n; i++) {
+            cin >> vec[i];
+        }
+        
+        if(helper(vec, vec[0], x, n, 1)) cout << "YES";
+        else cout << "NO";
+        return 0;
+}
