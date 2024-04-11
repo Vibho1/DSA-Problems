@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void helper(vector<vector<int>>& vec1, vector<vector<int>>& vec2, int r, int c, vector<vector<int>>& res, int cr, int cc) {
+    if(cr == r - 1 && cc == c) return;
+    if(cc == c) return helper(vec1, vec2, r, c, res, cr + 1, 0);
+    
+    int sum = vec1[cr][cc] + vec2[cr][cc];
+    res[cr][cc] = sum;
+    return helper(vec1, vec2, r, c, res, cr, cc + 1);
+}
+int main() {
+
+        int r, c;
+        cin >> r >> c;
+        
+        vector<vector<int>> vec1(r, vector<int>(c));
+        vector<vector<int>> vec2(r, vector<int>(c));
+        
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                cin >> vec1[i][j];
+            }
+        }
+        
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                cin >> vec2[i][j];
+            }
+        }
+        vector<vector<int>> res(r, vector<int>(c));
+        
+        helper(vec1, vec2, r, c, res, 0, 0);
+        
+        for(int i = 0; i < r; i++) {
+            for(int j = 0; j < c; j++) {
+                cout << res[i][j] << " ";
+            }
+            cout << endl;
+        }
+        
+        return 0;
+}
