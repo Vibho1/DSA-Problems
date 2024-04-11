@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int helper(int n) {
+long long helper(long long n) {
     if(n == 0) return 1;
     return n * helper(n - 1);
 }
 int main() {
 
-        int n;
+        long long n;
         cin >> n;
         cout<< helper(n) << endl;
         return 0;
