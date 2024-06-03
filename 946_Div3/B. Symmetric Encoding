@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Symmetric Encoding
+
+int main() {
+    int t;
+    
+    cin >> t;
+    
+    while(t-- > 0) {
+        int x;
+        cin >> x;
+        string s;
+        cin >> s;
+        
+        vector<int> vec(26, 0);
+        
+        for(int i = 0; i <= x; i++) {
+            if(vec[s[i] - 'a'] == 0) {
+                vec[s[i] - 'a']++;
+            }
+        }
+        
+        string curr = "";
+        
+        for(int i = 0; i < 26; i++) {
+            if(vec[i] > 0) curr += char(i + (int)'a');
+        }
+        
+        string rev = curr;
+        
+        reverse(rev.begin(), rev.end());
+        
+        vector<int> indices(26, 0);
+        
+        for(int i = 0; i < curr.length(); i++) {
+            indices[curr[i] - 'a'] = i;
+        }
+        
+        string ans = "";
+        
+        for(int i = 0; i < s.length(); i++) {
+            char c = s[i];
+            
+            ans += rev[indices[c - 'a']];
+        }
+        
+        
+        
+        cout << ans << endl;
+    }
+}
