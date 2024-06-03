@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Phone Desktop
+
+int main() {
+    int t;
+    
+    cin >> t;
+    
+    while(t-- > 0) {
+        int x, y;
+        cin >> x;
+        cin >> y;
+        
+        int ans = ceil ((double)y / 2.0);
+        int rem = 0;
+        if(y > 0) {
+        if(y % 2 == 1) {
+        rem = ((7 * ans) + 4);
+        }
+        else {
+            rem = 7 * ans;
+        }
+        
+        if(x <= rem) cout << ans << endl;
+        else {
+            int mo = x - rem;
+            ans += ceil((double)mo / 15.0);
+            cout << ans << endl;
+        }
+        }
+        else {
+            ans = ceil((double)x / 15.0);
+            cout << ans << endl;
+        }
+    }
+}
