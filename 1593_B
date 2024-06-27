@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void solve(vector<int>& vec, int& ans, string s, int i) {
+    if (i == vec.size()) {
+        if (s.size() >= 2 && ((s.back() == '0' && (s[s.size() - 2] == '0' || s[s.size() - 2] == '5')) || (s.back() == '5' && (s[s.size() - 2] == '2' || s[s.size() - 2] == '7')))) {
+            ans = max(ans, (int)s.size());
+        }
+        return;
+    }
+    
+    solve(vec, ans, s + to_string(vec[i]), i + 1);
+    solve(vec, ans, s, i + 1);
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string s;
+        cin >> s;
+        int ans = s.size();
+        vector<string> vec = {"00", "25", "50", "75"};
+        
+        for(auto& i : vec) {
+            int y = 0, ok = 1;
+            for(int j = s.size() - 1; j >= 0; j--) {
+                if(s[j] == i[ok]) ok--;
+                else y++;
+                
+                if(ok == -1) break;
+            }
+            if(ok == -1) ans = min(ans, y);
+        }
+        
+        cout << ans << endl;
+    }
+
+    return 0;
+}
