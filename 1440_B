@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+        int posi = (int) ceil((double)n / 2.0);
+        // cout << posi << " ";
+        if(n % 2 == 0) posi++;
+        
+        long long sum = 0;
+        int count = 0;
+        int len = n * k;
+        
+        for(int i = 0; i < len; i++) {
+            int num;
+            cin >> num;
+            if(len - i <= posi * k) {
+                if(count % posi == 0) {
+                    sum += num;
+                }
+                count++;
+            }
+        }
+        
+        cout << sum << endl;
+    }
+
+    return 0;
+}
