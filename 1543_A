@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        long long a, b;
+        cin >> a >> b;
+        
+        long long maxP = abs(a - b);
+        
+            if(a == b) {
+                cout << 0 << " " << 0 << endl;
+            }
+            else {
+            long long rem = a % maxP;
+            
+            cout << maxP << " " << min(rem, maxP - rem) << endl;
+            
+            }
+    }
+
+    return 0;
+}
