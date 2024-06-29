@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        long long n, p;
+        cin >> n >> p;
+        
+        vector<pair<long long, long long>> vec(n);
+        
+        for(int i = 0; i < n; i++) {
+            cin >> vec[i].second;
+        }
+        
+        for(int i = 0; i < n; i++) {
+            cin >> vec[i].first;
+        }
+        
+        sort(vec.begin(), vec.end());
+        
+        int currTold = 1;
+        long long totalCost = p;
+        
+        for(int i = 0; i < n; i++) {
+            if(currTold + vec[i].second < n && vec[i].first <= p) {
+                totalCost += vec[i].first * vec[i].second;
+                currTold += vec[i].second;
+            }
+            else {
+                totalCost += (n - currTold) * min(p, vec[i].first);
+                currTold = n;
+                break;
+            }
+        }
+        
+        cout << min(((long long) p * (long long) n), totalCost) << endl;
+    }
+
+    return 0;
+}
