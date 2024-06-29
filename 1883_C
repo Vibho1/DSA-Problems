@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+        int eC = 0;
+        int mini = INT_MAX;
+        bool flag = false;
+        for(int i = 0; i < n; i++) {
+            int num;
+            cin >> num;
+            
+            if(num % 2 == 0) eC++;
+            
+            if(num % k == 0) {
+                flag = true;
+            }
+            mini = min(mini, k - (num % k));
+        }
+        
+        if(k == 4) {
+            if(eC < 2 && !flag) cout << min(mini,  2 - eC) << endl;
+            else cout << 0 << endl;
+        }
+        else {
+            if(!flag) cout << mini << endl;
+            else cout << 0 << endl;
+        }
+        
+        
+    }
+
+    return 0;
+}
