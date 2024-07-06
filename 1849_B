@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while(t--) {
+        int n, k;
+        cin >> n >> k;
+        
+        vector<pair<int, int>> vec(n);
+        
+        for(int i = 0; i < n; i++) {
+            int num;
+            cin >> num;
+            int first = num % k;
+            if(num % k == 0) first = k;
+            vec[i] = make_pair(first, i + 1);
+        }
+        
+        sort(vec.rbegin(), vec.rend());
+        priority_queue<int, vector<int>, greater<int>> pq;
+        
+        int i = 0;
+        while (i < n) {
+            int current_mod = vec[i].first;
+            
+            while (i < n && vec[i].first == current_mod) {
+                pq.push(vec[i].second);
+                i++;
+            }
+            
+            while (!pq.empty()) {
+                cout << pq.top() << " ";
+                pq.pop();
+            }
+        }
+
+        cout << endl;
+    }
+    return 0;
+}
