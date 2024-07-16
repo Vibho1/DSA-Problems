@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    
+    bool flag = false;
+    int maxi = INT_MIN;
+    
+    string p = "";
+    for(char c : s) {
+        if(c >= '0' && c <= '8') {
+            p += c;
+        }
+        else if(c == '9') flag = true;
+        else {
+            if(!flag && !p.empty()) {
+                int num = stoi(p);
+                maxi = max(maxi, num);
+            }
+            p = "";
+            flag = false;
+        }
+    }
+    
+    if(!p.empty()) maxi = max(maxi, stoi(p));
+    
+    cout << maxi << endl;
+}
