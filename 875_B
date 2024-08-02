@@ -1,0 +1,61 @@
+// Merge 2 arrays and find the longest subarray which has same elements.
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while(t--) {
+        int n;
+        cin >> n;
+        
+        vector<int> vec1(n);
+        vector<int> vec2(n);
+        
+        for(int i = 0; i < n; i++) {
+            cin >> vec1[i];
+        }
+        
+        for(int i = 0; i < n; i++) {
+            cin >> vec2[i];
+        }
+        
+        vector<int> hash1((2 * n) + 1, 0);
+        vector<int> hash2((2 * n) + 1, 0);
+        
+        int curr = 1;
+        for(int i = 0; i < n; i++) {
+            if(i > 0 && vec1[i] == vec1[i - 1]) {
+                curr++;
+                hash1[vec1[i]] = max(curr, hash1[vec1[i]]);
+            }
+            else {
+                curr = 1;
+                hash1[vec1[i]] = max(curr, hash1[vec1[i]]);
+            }
+        }
+        
+        int curr1 = 1;
+        for(int i = 0; i < n; i++) {
+            if(i > 0 && vec2[i] == vec2[i - 1]) {
+                curr1++;
+                hash2[vec2[i]] = max(curr1, hash2[vec2[i]]);
+            }
+            else {
+                curr1 = 1;
+                hash2[vec2[i]] = max(curr1, hash2[vec2[i]]);
+            }
+        }
+
+        int ans = 0;
+        
+        for(int i = 0; i <= 2 * n; i++) {
+            ans = max(ans, hash1[i] + hash2[i]);
+        }
+        
+        cout << ans << endl;
+    }
+}
