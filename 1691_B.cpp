@@ -28,7 +28,15 @@ int main() {
             }
             if(j - i > 1) {
                 for(int k = j - 1; k >= i; k--) {
+                    if((j - i) % 2 == 1 && k == i + (j - i) / 2) {
+                        vec[c] = k - 1;
+                        c++;
+                        vec[c] = k;
+                        k--;
+                    }
+                    else {
                     vec[c] = k;
+                    }
                     c++;
                 }
             }
