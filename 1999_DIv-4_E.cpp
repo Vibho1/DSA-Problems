@@ -4,27 +4,32 @@
 using namespace std;
 #define ll long long
 
+ll log_base(ll a, ll b) {
+    return log2(a) / log2(b);
+}
+
 int main() {
-    int t;
-    cin >> t;
+    int testCases;
+    cin >> testCases;
     
-    while(t--) {
-        int l, r;
-        cin >> l >> r;
+    ll maxRange = 2 * 1e5 + 1;
+    vector<ll> precomputedValues(maxRange + 1);
         
-        ll totalOps = 0;
-        ll minOps = INT_MAX;
+    for(ll i = 0; i <= maxRange; i++) {
+        precomputedValues[i] = log_base(i, 3) + 1;
+    }
+    
+    for(ll i = 1; i <= maxRange; i++) {
+    precomputedValues[i] += precomputedValues[i - 1];
+    }
+    
+    while(testCases--) {
+        int left, right;
+        cin >> left >> right;
         
-        for(int i = l; i <= r; i++) {
-            ll prev = totalOps;
-            int curr = i;
-            while(curr > 0) {
-                totalOps++;
-                curr /= 3;
-            }
-            minOps = min(minOps, totalOps - prev);
-        }
+        ll totalOperations = precomputedValues[right] - precomputedValues[left];
+
         
-        cout << totalOps + minOps << endl;
+        cout << totalOperations + (2 * (log_base(left, 3) + 1)) << endl;
     }
 }
