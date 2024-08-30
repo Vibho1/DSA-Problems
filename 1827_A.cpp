@@ -27,13 +27,7 @@ int main() {
         sort(vec1.begin(), vec1.end());
         sort(vec2.begin(), vec2.end());
         
-        bool flag = false;
         
-        for(int i = 0; i < n; i++) {
-            if(vec1[i] <= vec2[i]) flag = true;
-        }
-        
-        if(!flag) {
         int j = 0;
         ll ans = 1;
         ll mod = 1e9 + 7;
@@ -46,9 +40,6 @@ int main() {
         }
         
         cout << ans;
-        }
-        else cout << 0;
-        
         cout << "\n";
     }
 }
